@@ -46,6 +46,7 @@ public class Caracteristique{
           Double hauteur;
           Double volumeducoffre;
           Double commission;
+          static java.util.Date anneactuelle = new java.util.Date();
               public void setIdcaracteristique( Long idcaracteristique){
                   this.idcaracteristique=idcaracteristique;
               }
@@ -109,49 +110,70 @@ public class Caracteristique{
               public Long getIdlocalisation(){
                   return this.idlocalisation;
               }
-              public void setAutonomie( Double autonomie){
+              public void setAutonomie( Double autonomie) throws Exception{
+                if(autonomie<0){
+                        throw new Exception("valeur de l'autonomie negatif");
+                }
                   this.autonomie=autonomie;
               }
           
               public Double getAutonomie(){
                   return this.autonomie;
               }
-              public void setKilometrage( Double kilometrage){
+              public void setKilometrage( Double kilometrage)throws Exception{
+                if(kilometrage<0){
+                        throw new Exception("valeur de l'autonomie negatif");
+                }
                   this.kilometrage=kilometrage;
               }
           
               public Double getKilometrage(){
                   return this.kilometrage;
               }
-              public void setAnneedefabrication( java.util.Date anneedefabrication){
-                  this.anneedefabrication=anneedefabrication;
+              public void setAnneedefabrication( java.util.Date anneedefabrication)throws Exception{
+                    if(anneedefabrication.getTime()>anneactuelle.getTime()){
+                            throw new Exception("date de fabrication non valide");
+                    }
+                    this.anneedefabrication=anneedefabrication;
               }
           
               public java.util.Date getAnneedefabrication(){
                   return this.anneedefabrication;
               }
-              public void setAnnemodel( java.util.Date annemodel){
+              public void setAnnemodel( java.util.Date annemodel)throws Exception{
+                if(annemodel.getTime()>anneactuelle.getTime()){
+                            throw new Exception("date du model non valide");
+                }
                   this.annemodel=annemodel;
               }
           
               public java.util.Date getAnnemodel(){
                   return this.annemodel;
               }
-              public void setCapacite( Double capacite){
+              public void setCapacite( Double capacite)  throws Exception{
+                if(capacite<0){
+                        throw new Exception("capacitee negatif");
+                }
                   this.capacite=capacite;
               }
           
               public Double getCapacite(){
                   return this.capacite;
               }
-              public void setConsomation( Double consomation){
+              public void setConsomation( Double consomation)  throws Exception{
+                if(consomation<0){
+                        throw new Exception("consomation negatif");
+                }
                   this.consomation=consomation;
               }
           
               public Double getConsomation(){
                   return this.consomation;
               }
-              public void setPrixdevente( Double prixdevente){
+              public void setPrixdevente( Double prixdevente) throws Exception{
+                if(prixdevente<0){
+                        throw new Exception("prixdevente negatif");
+                }
                   this.prixdevente=prixdevente;
               }
           
@@ -165,49 +187,70 @@ public class Caracteristique{
               public Long getColeur(){
                   return this.coleur;
               }
-              public void setNbrporte( Integer nbrporte){
+              public void setNbrporte( Integer nbrporte) throws Exception{
+                if(nbrporte<0){
+                        throw new Exception("nbrdeporte negatif");
+                }
                   this.nbrporte=nbrporte;
               }
           
               public Integer getNbrporte(){
                   return this.nbrporte;
               }
-              public void setNbrplace( Integer nbrplace){
+              public void setNbrplace( Integer nbrplace) throws Exception{
+                if(nbrplace<0){
+                        throw new Exception("nbrplace negatif");
+                }
                   this.nbrplace=nbrplace;
               }
           
               public Integer getNbrplace(){
                   return this.nbrplace;
               }
-              public void setLongueur( Double longueur){
+              public void setLongueur( Double longueur) throws Exception{
+                if(longueur<0){
+                        throw new Exception("longeur negatif");
+                }
                   this.longueur=longueur;
               }
           
               public Double getLongueur(){
                   return this.longueur;
               }
-              public void setLargeur( Double largeur){
+              public void setLargeur( Double largeur) throws Exception{
+                if(largeur<0){
+                        throw new Exception("largeur negatif");
+                }
                   this.largeur=largeur;
               }
           
               public Double getLargeur(){
                   return this.largeur;
               }
-              public void setHauteur( Double hauteur){
+              public void setHauteur( Double hauteur) throws Exception{
+                if(hauteur<0){
+                        throw new Exception("hauter");
+                }
                   this.hauteur=hauteur;
               }
           
               public Double getHauteur(){
                   return this.hauteur;
               }
-              public void setVolumeducoffre( Double volumeducoffre){
+              public void setVolumeducoffre( Double volumeducoffre) throws Exception{
+                if(volumeducoffre<0){
+                        throw new Exception("volumecoffre negatif");
+                }
                   this.volumeducoffre=volumeducoffre;
               }
           
               public Double getVolumeducoffre(){
                   return this.volumeducoffre;
               }
-              public void setCommission( Double commission){
+              public void setCommission( Double commission) throws Exception{
+                if(commission<0){
+                        throw new Exception("commission negatif");
+                }
                   this.commission=commission;
               }
           

@@ -3,6 +3,9 @@ import com.pack.varotrafiaraoccasion.Entity.Detaillecaequipement;
 import com.pack.varotrafiaraoccasion.Service.DetaillecaequipementService;
 import java.text.SimpleDateFormat;
 import com.pack.varotrafiaraoccasion.Work.Returntype;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +26,20 @@ public class DetaillecaequipementController {
 
  private final DetaillecaequipementService detaillecaequipementService;
     
+    @PostMapping("/varotrafiaraback/detaillecaequipementstring")
+    public Returntype  insertstring(@RequestParam("equipement") String equipement,HttpSession httpSession){
+        Returntype returntype = new Returntype();
+        try {
+            httpSession.setAttribute("equipement", equipement);
+            returntype = new Returntype(null,"insert");
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
+
     @Autowired
     public DetaillecaequipementController(DetaillecaequipementService detaillecaequipementService){
         this.detaillecaequipementService= detaillecaequipementService;

@@ -22,6 +22,9 @@ public class ClientService {
     public Client findOne(Long idClient ){
         return clientRepository.findOne(idClient).get();
     }
+    public Client findUser(String email,String password ){
+        return clientRepository.findUser(email, password).get();
+    }
 
     public void delete(Long idClient){
         clientRepository.deleteById(idClient);

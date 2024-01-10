@@ -1,6 +1,16 @@
 create database backvarotrafiara;
 \c backvarotrafiara;
 
+drop table  Utilisateur;
+create table Utilisateur (
+    id bigint primary key,
+    pseudo text,
+    password text,
+    role text
+);
+delete Utilisateur;
+insert into Utilisateur(id,pseudo,password,role) values (1,'mertinaclaudietoto@gmail.com','$2a$10$GmheAiXgI.d8IPWOTjTvw..1Ew15G4M7Rj09JfTi/vXmnLVjHnztC',null);
+
 create table typevehicule(
     idtypevehicule bigint primary key,
     nomtypevehicule varchar(50)
@@ -45,7 +55,12 @@ create table genre(
     idgenre bigint primary key,
     nomgenre varchar(20)
 );
+-- Changer le type de colonne de integer à bigint
+ALTER TABLE client
+ALTER COLUMN motdepasse TYPE text;
+update client set motdepasse='mertina';
 
+update client set motdepasse='$2a$10$GmheAiXgI.d8IPWOTjTvw..1Ew15G4M7Rj09JfTi/vXmnLVjHnztC';
 create table client(
     idclient bigint primary key,
     nomclient varchar(100),
@@ -57,6 +72,7 @@ create table client(
     tel text,
     idflocalisation bigint references localisation(idlocalisation)
 );
+insert into client values (1,'TOTO','Mertina Claudie','2003-06-28','mertinaclaudietoto@gmail.com','mertina5042',1,'0349359504',1);
 
 create table etat(
     idetat bigint primary key,
@@ -89,6 +105,12 @@ create table caracteristique(
     volumeducoffre double precision,
     commission double precision,
 );
+
+select nomclient,prenomclient,prixdevente,nommarque,nommodel,nomcouleur,nomlocalisation from v_liste_annonce ;
+
+
+
+
 
 create table detaillecaequipement(
     iddetaillecaequipement bigint primary key,
