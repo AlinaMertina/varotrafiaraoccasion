@@ -2,6 +2,9 @@ create database backvarotrafiara;
 \c backvarotrafiara;
 
 drop table  Utilisateur;
+
+select * from client;
+
 create table Utilisateur (
     id bigint primary key,
     pseudo text,
@@ -72,6 +75,9 @@ create table client(
     tel text,
     idflocalisation bigint references localisation(idlocalisation)
 );
+ALTER TABLE client
+ADD CONSTRAINT emailunique UNIQUE (email);
+
 insert into client values (1,'TOTO','Mertina Claudie','2003-06-28','mertinaclaudietoto@gmail.com','mertina5042',1,'0349359504',1);
 
 create table etat(
@@ -105,11 +111,23 @@ create table caracteristique(
     volumeducoffre double precision,
     commission double precision,
 );
+update caracteristique set idfmarque=1,idfmodel=1,idfenergie=1,idlocalisation=1,idfboitedevitesse=1,idftypevehicule=4 where idcaracteristique=1;
+update caracteristique set idfmarque=2,idfmodel=5,idfenergie=1,idlocalisation=1,idfboitedevitesse=1,idftypevehicule=4 where idcaracteristique=2;
+update caracteristique set idfmarque=3,idfmodel=9,idfenergie=1,idlocalisation=1,idfboitedevitesse=1,idftypevehicule=4 where idcaracteristique=3;
+update caracteristique set idfmarque=4,idfmodel=13,idfenergie=3,idlocalisation=2,idfboitedevitesse=2,idftypevehicule=5 where idcaracteristique=4;
+update caracteristique set idfmarque=5,idfmodel=17,idfenergie=3,idlocalisation=2,idfboitedevitesse=2,idftypevehicule=5 where idcaracteristique=5;
+update caracteristique set idfmarque=6,idfmodel=21,idfenergie=3,idlocalisation=3,idfboitedevitesse=2,idftypevehicule=5 where idcaracteristique=6;
+update caracteristique set idfmarque=7,idfmodel=25,idfenergie=4,idlocalisation=3,idfboitedevitesse=4,idftypevehicule=6 where idcaracteristique=12;
+
+
+
+delete from photocaracteristique;
+delete from detaillecaequipement;
+delete from caracteristique;
 
 select nomclient,prenomclient,prixdevente,nommarque,nommodel,nomcouleur,nomlocalisation from v_liste_annonce ;
-
-
-
+SELECT nextval('photocaracteristique_sequence') AS prochaine_valeur;
+SELECT nextval('detaillecaequipement_sequence') AS prochaine_valeur;
 
 
 create table detaillecaequipement(
@@ -123,3 +141,12 @@ create table photocaracteristique(
     idfcaracteristique bigint references caracteristique(idcaracteristique),
     nomimage text
 );
+
+select
+        * 
+    from
+        client 
+    where
+        email='mertinaclaudietoto@gmail.com'
+        and motdepasse='mertina5041';
+

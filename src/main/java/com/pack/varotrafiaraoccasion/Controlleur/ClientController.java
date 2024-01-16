@@ -4,6 +4,8 @@ import com.pack.varotrafiaraoccasion.Entity.Utilisateur;
 import com.pack.varotrafiaraoccasion.Security.Config.AuthenticationService;
 import com.pack.varotrafiaraoccasion.Service.ClientService;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+
 import com.pack.varotrafiaraoccasion.Work.Returntype;
 
 import ch.qos.logback.classic.pattern.Util;
@@ -41,16 +43,19 @@ public class ClientController {
     @CrossOrigin(origins = "http://localhost:8100/")
     @PostMapping("/varotrafiaraback/connexion")
     public Returntype connexion(@RequestBody Utilisateur utilisateur,HttpSession httpSession){
+        System.out.println("connexion client");
         Returntype returntype = new Returntype();
         try {
-            System.out.println(utilisateur.getPseudo());
-            System.out.println(utilisateur.getPassword());
             Client client = clientService.findUser(utilisateur.getPseudo(), utilisateur.getPassword());
             if(client!=null){
+                System.out.println("Nom client "+client.getNomclient());
                 httpSession.setAttribute("client", client);
-                returntype = new Returntype(null,jwtToken.authenticate(new AuthenticationRequest(utilisateur.getPseudo(), utilisateur.getPassword())));
+                java.util.HashMap<String,Object> hashMap = new HashMap<String,Object>();
+                hashMap.put("client", client);
+                hashMap.put("token", jwtToken.authenticate(new AuthenticationRequest(utilisateur.getPseudo(), utilisateur.getPassword())));
+                returntype = new Returntype(null,hashMap);
             }else{
-                    returntype = new Returntype("compte non reconu",null);
+                returntype = new Returntype("compte non reconu",null);
             }
             
         } catch (Exception e) {
@@ -113,8 +118,10 @@ public class ClientController {
     public Returntype  insert(@RequestBody Client table){
         Returntype returntype = new Returntype();
         try {
-            Utilisateur utilisateur = new Utilisateur(null, table.getEmail(), table.getMotdepasse(), null);
-            service.register(utilisateur);
+            if(table.getIdclient()==null){
+                Utilisateur utilisateur = new Utilisateur(null, table.getEmail(), table.getMotdepasse(), null);
+                service.register(utilisateur);
+            }
             clientService.update(table);
             returntype = new Returntype(null,"insert");
         } catch (Exception e) {

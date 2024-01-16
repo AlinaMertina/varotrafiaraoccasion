@@ -84,6 +84,7 @@ public class CaracteristiqueController {
 
     @PostMapping("/varotrafiaraback/caracteristique")
     public Returntype  insert(@RequestBody Caracteristique table,HttpSession httpSession){
+        System.out.println("auto :"+table.getAutonomie());
         httpSession.setAttribute("caracteristique", table);
         Returntype returntype = new Returntype();
         try {
