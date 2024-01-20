@@ -14,6 +14,12 @@ create table Utilisateur (
 delete Utilisateur;
 insert into Utilisateur(id,pseudo,password,role) values (1,'mertinaclaudietoto@gmail.com','$2a$10$GmheAiXgI.d8IPWOTjTvw..1Ew15G4M7Rj09JfTi/vXmnLVjHnztC',null);
 
+create table favorie(
+    idfavorie bigint  primary key,
+    idfcaracteristique bigint references caracteristique(idcaracteristique),
+    idclient bigint references client(idclient)
+);
+
 create table typevehicule(
     idtypevehicule bigint primary key,
     nomtypevehicule varchar(50)
@@ -48,8 +54,6 @@ create table localisation(
     idlocalisation bigint primary key,
     nomlocalisation varchar(100)
 );
-
-
 create table boitdevitesse(
     idboitedevitesse bigint primary key,
     nomboitdereception varchar(100)
@@ -77,6 +81,9 @@ create table client(
 );
 ALTER TABLE client
 ADD CONSTRAINT emailunique UNIQUE (email);
+
+
+
 
 insert into client values (1,'TOTO','Mertina Claudie','2003-06-28','mertinaclaudietoto@gmail.com','mertina5042',1,'0349359504',1);
 
@@ -150,3 +157,28 @@ select
         email='mertinaclaudietoto@gmail.com'
         and motdepasse='mertina5041';
 
+
+
+create table administrateur(
+    idadministrateur bigint primary key,
+    nom varchar(100),
+    prenom varchar(100),
+    datenaissance date,
+    email text,
+    motdepasse varchar(20),
+    idfgenre bigint references genre(idgenre),
+    tel text,
+    idflocalisation bigint references localisation(idlocalisation)
+);
+INSERT INTO table_administrateurs (idadministrateur, nom, prenom, datenaissance, email, motdepasse, idfgenre, tel, idflocalisation)
+VALUES
+    (1, 'Doe', 'John', '1990-05-15', 'john.doe@example.com', 'motdepasse123', 1, '123456789', 2),
+    (2, 'Smith', 'Jane', '1985-08-22', 'jane.smith@example.com', 'password456', 2, '987654321', 3),
+    (3, 'Johnson', 'Bob', '1978-03-10', 'bob.johnson@example.com', 'securepass', 1, '5551112233', 1);
+
+create table validation(
+    idvalidation bigint primary key,
+    datevalidation date,
+    idcaracteristique bigint references caracteristique(idcaracteristique),
+    idadministrateur bigint references administrateur(idadministrateur)
+);

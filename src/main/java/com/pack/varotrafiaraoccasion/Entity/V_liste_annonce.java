@@ -25,6 +25,7 @@ public class V_liste_annonce{
             strategy = GenerationType.SEQUENCE,
             generator = "v_liste_annonce_sequence"
         )
+      
         Double consomation;
         Long idclient;
         Long idphotocaracteristique;
@@ -345,5 +346,13 @@ public class V_liste_annonce{
     
             public void setConsomation(Double consomation) {
                 this.consomation = consomation;
+            }
+            Long idfavorie;
+            public Long getIdfavorie() {
+                return idfavorie;
+            }
+    
+            public void setIdfavorie(Long idfavorie) {
+                this.idfavorie = idfavorie;
             }
 }

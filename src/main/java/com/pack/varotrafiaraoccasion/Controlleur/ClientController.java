@@ -3,6 +3,8 @@ import com.pack.varotrafiaraoccasion.Entity.Client;
 import com.pack.varotrafiaraoccasion.Entity.Utilisateur;
 import com.pack.varotrafiaraoccasion.Security.Config.AuthenticationService;
 import com.pack.varotrafiaraoccasion.Service.ClientService;
+import com.pack.varotrafiaraoccasion.Service.V_info_clientService;
+
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
@@ -35,11 +37,33 @@ public class ClientController {
  private final ClientService clientService;
  private final AuthenticationService jwtToken;
  private final AuthenticationService service;
+ private final V_info_clientService info_clientService;
     
     // @Autowired
     // public ClientController(ClientService clientService){
     //     this.clientService= clientService;
     // }
+    @PostMapping("/varotrafiaraback/loginfront")
+    public Returntype connexionfront(@RequestBody Utilisateur utilisateur,HttpSession httpSession){
+        Returntype returntype = new Returntype();
+        try {
+            Client client = clientService.findUser(utilisateur.getPseudo(), utilisateur.getPassword());
+            if(client!=null){
+                java.util.HashMap<String,Object> hashMap = new HashMap<String,Object>();
+                hashMap.put("client", info_clientService.findByIdclient(client.getIdclient()).get());
+                hashMap.put("token", jwtToken.authenticate(new AuthenticationRequest(utilisateur.getPseudo(), utilisateur.getPassword())));
+                returntype = new Returntype(null,hashMap);
+            }else{
+                returntype = new Returntype("compte non reconu",null);
+            }  
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
+
     @CrossOrigin(origins = "http://localhost:8100/")
     @PostMapping("/varotrafiaraback/connexion")
     public Returntype connexion(@RequestBody Utilisateur utilisateur,HttpSession httpSession){

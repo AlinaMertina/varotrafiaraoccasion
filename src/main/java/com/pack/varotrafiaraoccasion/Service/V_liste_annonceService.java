@@ -16,6 +16,72 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class V_liste_annonceService {
     V_liste_annonceRepository v_liste_annonceRepository;
 
+    public java.util.List<V_liste_annonce> findAllAdmin(){ //liste de tout les annonce avec la dmin
+        java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
+        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
+        java.util.List<V_liste_annonce>liste = Requete.findAllrequeteAnnonce();
+        Long a= 0L;
+        for(int i =0;i <liste.size() ;i++ ){
+            V_liste_annonce an = liste.get(i);
+            if(an.getIdcaracteristique()!=a){
+                a=an.getIdcaracteristique();
+                resulta.add(an);
+            }
+            
+        }
+        return resulta;
+    }
+
+    public java.util.List<V_liste_annonce> findAllHistorique(Long id){
+        java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
+        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
+        java.util.List<V_liste_annonce>liste = Requete.findAllrequeteAnnonceIdclient(id);
+        Long a= 0L;
+        for(int i =0;i <liste.size() ;i++ ){
+            V_liste_annonce an = liste.get(i);
+            if(an.getIdcaracteristique()!=a){
+                a=an.getIdcaracteristique();
+                resulta.add(an);
+            }
+            
+        }
+        return resulta;
+    }
+
+    public java.util.List<V_liste_annonce> findAllByIdclient(Long id){
+        java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
+        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
+        java.util.List<V_liste_annonce>liste = Requete.findAllAnnonceWithFavorie(id);
+        Long a= 0L;
+        for(int i =0;i <liste.size() ;i++ ){
+            V_liste_annonce an = liste.get(i);
+            if(an.getIdcaracteristique()!=a){
+                // System.out.println("idcaracteristique :"+an.getIdcaracteristique());
+                a=an.getIdcaracteristique();
+                resulta.add(an);
+            }
+            
+        }
+        return resulta;
+    }
+
+    public java.util.List<V_liste_annonce> findAllListeAnnonceFavorie(Long id){
+        java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
+        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
+        java.util.List<V_liste_annonce>liste = Requete.findAllAnnonceWithFavorie(id);
+        Long a= 0L;
+        for(int i =0;i <liste.size() ;i++ ){
+            V_liste_annonce an = liste.get(i);
+            if(an.getIdcaracteristique()!=a && an.getIdfavorie()!=0){
+                // System.out.println("idcaracteristique :"+an.getIdcaracteristique());
+                a=an.getIdcaracteristique();
+                resulta.add(an);
+            }
+            
+        }
+        return resulta;
+    }
+
     public java.util.List<V_liste_annonce> findAllListeAnnonce(){
         java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
         // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
@@ -30,7 +96,6 @@ public class V_liste_annonceService {
             }
             
         }
-        // System.out.println("fin");
         return resulta;
     }
 

@@ -33,7 +33,41 @@ public class V_liste_annonceController {
     private final CaracteristiqueService caracteristiqueService;
    
 
-   
+    @PostMapping("/varotrafiaraback/v_liste_annonceshistorique")
+    public Returntype findAllHistorique(@RequestBody Long id){
+        System.out.println("historique");
+        Returntype returntype = new Returntype();
+        try {
+            returntype = new Returntype(null,v_liste_annonceService.findAllHistorique(id));
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
+    @PostMapping("/varotrafiaraback/v_liste_annoncesfront")
+    public Returntype findAllFront(@RequestBody Long id){
+        Returntype returntype = new Returntype();
+        try {
+            returntype = new Returntype(null,v_liste_annonceService.findAllByIdclient(id));
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+    @PostMapping("/varotrafiaraback/v_liste_annoncesfavorie")
+    public Returntype findListeFavorie(@RequestBody Long id){
+        Returntype returntype = new Returntype();
+        try {
+            returntype = new Returntype(null,v_liste_annonceService.findAllListeAnnonceFavorie(id));
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
 
     @PostMapping("/varotrafiaraback/v_liste_annoncesfactorid")
     public Returntype findAllFactorerid(@RequestBody Long id){
@@ -75,7 +109,7 @@ public class V_liste_annonceController {
     public Returntype findAll(){
         Returntype returntype = new Returntype();
         try {
-            returntype = new Returntype(null,v_liste_annonceService.findAll());
+            returntype = new Returntype(null,v_liste_annonceService.findAllAdmin());
         } catch (Exception e) {
             returntype = new Returntype(e.getMessage(),null);
             return returntype;
