@@ -6,6 +6,7 @@ insert into typevehicule values (5,'Pick-up');
 insert into typevehicule values (6,'Voiture societe,commerciale');
 insert into typevehicule values (7,'Camion (plus de 3,5t)');
 
+
 insert into marque values (1,'Peugeot');
 insert into marque values (2,'Renault');
 insert into marque values (3,'Audie');
@@ -91,7 +92,8 @@ insert into localisation values (3,'Fianarantsoa');
 insert into localisation values (4,'Mahajanga');
 insert into localisation values (5,'Toamasina');
 insert into localisation values (6,'Toliara');
-
+insert into localisation values (7,'Majugna');
+insert into localisation values (8,'Nosi be');
 
 insert into boitdevitesse values (1,'manuelle');
 insert into boitdevitesse values (2,'automatique');

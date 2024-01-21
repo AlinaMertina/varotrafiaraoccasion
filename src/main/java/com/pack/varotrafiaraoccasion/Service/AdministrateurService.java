@@ -1,6 +1,7 @@
 package com.pack.varotrafiaraoccasion.Service;
 
 import com.pack.varotrafiaraoccasion.Entity.Administrateur;
+import com.pack.varotrafiaraoccasion.Entity.Client;
 import com.pack.varotrafiaraoccasion.Repository.AdministrateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class AdministrateurService {
     public Administrateur findOne(Long idAdministrateur ){
         return administrateurRepository.findOne(idAdministrateur).get();
     }
+    public Administrateur findUser(String email,String password ){
+        return administrateurRepository.findUser(email, password).get();
+    }
+
 
     public void delete(Long idAdministrateur){
         administrateurRepository.deleteById(idAdministrateur);

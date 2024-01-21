@@ -1,6 +1,16 @@
 create database backvarotrafiara;
 \c backvarotrafiara;
 
+
+create or replace view v_nbr_post as
+SELECT COUNT(*), EXTRACT(YEAR FROM c.annemodel) AS annee, EXTRACT(MONTH FROM c.annemodel) AS mois
+FROM caracteristique AS c
+GROUP BY annee, mois
+ORDER BY annee DESC, mois DESC;
+
+select  idcaracteristique,annemodel from caracteristique ;
+
+
 drop table  Utilisateur;
 
 select * from client;
@@ -127,7 +137,7 @@ update caracteristique set idfmarque=6,idfmodel=21,idfenergie=3,idlocalisation=3
 update caracteristique set idfmarque=7,idfmodel=25,idfenergie=4,idlocalisation=3,idfboitedevitesse=4,idftypevehicule=6 where idcaracteristique=12;
 
 
-
+idcaracteristique/idfetat/idclient/idfboitedevitesse/idfmarque/idfmodel/idfenergie/idftypevehicule/idlocalisation/autonomie/kilometrage/anneedefabrication/annemodel/capacite/consomation/prixdevente/coleur/nbrporte/
 delete from photocaracteristique;
 delete from detaillecaequipement;
 delete from caracteristique;
@@ -176,9 +186,75 @@ VALUES
     (2, 'Smith', 'Jane', '1985-08-22', 'jane.smith@example.com', 'password456', 2, '987654321', 3),
     (3, 'Johnson', 'Bob', '1978-03-10', 'bob.johnson@example.com', 'securepass', 1, '5551112233', 1);
 
+delete from validation ;
+
 create table validation(
     idvalidation bigint primary key,
     datevalidation date,
     idcaracteristique bigint references caracteristique(idcaracteristique),
-    idadministrateur bigint references administrateur(idadministrateur)
+    idadministrateur bigint references administrateur(idadministrateur),
+    commissionvalidation double precision
 );
+
+create table historiqueetat(
+    idhistoriqueetat bigint primary key,
+    idcaracteristique bigint references caracteristique(idcaracteristique),
+    idetat bigint  references etat(idetat),
+    date date
+);
+
+
+create or replace view v_detail_statistique_annonce as
+select historiqueetat.idetat,nommarque,idmarque,COUNT(historiqueetat.idcaracteristique), EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois
+from 
+historiqueetat join 
+v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique 
+GROUP by nommarque,idmarque ,annee, mois,historiqueetat.idetat
+ORDER BY annee DESC, mois DESC;
+
+
+create or replace view v_detailnbr_validee as
+select nommarque,idmarque,COUNT(historiqueetat.idcaracteristique), EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois
+from 
+historiqueetat join 
+v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique where idetat=2
+GROUP by nommarque,idmarque ,annee, mois
+ORDER BY annee DESC, mois DESC;
+
+create or replace view v_detailnbr_vendu as
+select nommarque,idmarque,COUNT(historiqueetat.idcaracteristique), EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois
+from 
+historiqueetat join 
+v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique where idetat=3
+GROUP by nommarque,idmarque ,annee, mois
+ORDER BY annee DESC, mois DESC;
+
+
+
+create or replace view v_nbr_validee as
+SELECT COUNT(*), EXTRACT(YEAR FROM c.date) AS annee, EXTRACT(MONTH FROM c.date) AS mois
+FROM historiqueetat AS c where idetat=2
+GROUP BY annee, mois
+ORDER BY annee DESC, mois DESC;
+
+
+create or replace view v_nbr_vendu as
+SELECT COUNT(*), EXTRACT(YEAR FROM c.date) AS annee, EXTRACT(MONTH FROM c.date) AS mois
+FROM historiqueetat AS c where idetat=3
+GROUP BY annee, mois
+ORDER BY annee DESC, mois DESC;
+
+
+create or replace view v_statistique_annonce as
+SELECT idetat,COUNT(*) as nbr , EXTRACT(YEAR FROM c.date) AS annee, EXTRACT(MONTH FROM c.date) AS mois
+FROM historiqueetat AS c 
+GROUP BY annee, mois,idetat
+ORDER BY annee DESC, mois DESC;
+select * from v_statistique_annonce;
+select
+        * 
+    from
+        administrateur 
+    where
+        email='marieclaudiarasolonjatovo@gmail.com'
+        and motdepasse='mertina5041';
