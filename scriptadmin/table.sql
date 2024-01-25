@@ -92,6 +92,21 @@ create table client(
 ALTER TABLE client
 ADD CONSTRAINT emailunique UNIQUE (email);
 
+create table clientdateinscription(
+    idclientdateinscription bigint primary key,
+    idclient bigint references client(idclient),
+    date timestamp
+);
+insert into clientdateinscription values (1,1,'2024-01-02');
+insert into clientdateinscription values (2,2,'2024-02-02');
+insert into clientdateinscription values (3,3,'2024-03-03');
+
+CREATE OR REPLACE VIEW v_inscription AS
+SELECT COUNT(idclient) AS nbr,
+       EXTRACT(YEAR FROM clientdateinscription.date) AS annee,
+       EXTRACT(MONTH FROM clientdateinscription.date) AS mois
+FROM clientdateinscription;
+
 
 
 
@@ -128,6 +143,24 @@ create table caracteristique(
     volumeducoffre double precision,
     commission double precision,
 );
+select prixdevente from caracteristique;
+
+update caracteristique set prixdevente=150000 where idcaracteristique in (12,13,14,15,16,17);
+update caracteristique set prixdevente=250000 WHERE idcaracteristique BETWEEN 17 AND 25;
+update caracteristique set prixdevente=550000  WHERE idcaracteristique BETWEEN 26 AND 50;
+update caracteristique set prixdevente=2150000  WHERE idcaracteristique BETWEEN 51 AND 60;
+update caracteristique set prixdevente=3150000  WHERE idcaracteristique BETWEEN 61 AND 85;
+
+
+
+
+-- update caracteristique set  where idcaracteristique=1;
+
+UPDATE caracteristique
+SET commission = 0
+WHERE commission IS NULL;
+
+
 update caracteristique set idfmarque=1,idfmodel=1,idfenergie=1,idlocalisation=1,idfboitedevitesse=1,idftypevehicule=4 where idcaracteristique=1;
 update caracteristique set idfmarque=2,idfmodel=5,idfenergie=1,idlocalisation=1,idfboitedevitesse=1,idftypevehicule=4 where idcaracteristique=2;
 update caracteristique set idfmarque=3,idfmodel=9,idfenergie=1,idlocalisation=1,idfboitedevitesse=1,idftypevehicule=4 where idcaracteristique=3;
@@ -202,7 +235,12 @@ create table historiqueetat(
     idetat bigint  references etat(idetat),
     date date
 );
+ALTER TABLE historiqueetat
+ALTER COLUMN date TYPE timestamp;
 
+select idfmarque,idhistoriqueetat,historiqueetat.idcaracteristique,idetat,date,EXTRACT(YEAR FROM date) AS annee, EXTRACT(MONTH FROM date) AS mois from historiqueetat join caracteristique on historiqueetat.idcaracteristique=caracteristique.idcaracteristique;
+
+drop view v_detail_statistique_annonce;
 
 create or replace view v_detail_statistique_annonce as
 select historiqueetat.idetat,nommarque,idmarque,COUNT(historiqueetat.idcaracteristique), EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois
@@ -210,7 +248,28 @@ from
 historiqueetat join 
 v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique 
 GROUP by nommarque,idmarque ,annee, mois,historiqueetat.idetat
-ORDER BY annee DESC, mois DESC;
+ORDER BY annee ASC, mois ASC;
+
+select * from v_detail_statistique_annonce;
+
+CREATE OR REPLACE VIEW v_detail_statistique_annonce AS
+SELECT
+    historiqueetat.idetat,
+    nommarque,
+    idmarque,
+    COUNT(historiqueetat.idcaracteristique) AS count,
+    EXTRACT(YEAR FROM historiqueetat.date) AS annee,
+    EXTRACT(MONTH FROM historiqueetat.date) AS mois
+FROM
+    historiqueetat
+JOIN
+    v_liste_annonce ON historiqueetat.idcaracteristique = v_liste_annonce.idcaracteristique
+GROUP BY
+    nommarque, idmarque, annee, mois, historiqueetat.idetat
+ORDER BY
+    EXTRACT(YEAR FROM historiqueetat.date) ASC, EXTRACT(MONTH FROM historiqueetat.date) ASC;
+
+
 
 
 create or replace view v_detailnbr_validee as
@@ -245,11 +304,19 @@ GROUP BY annee, mois
 ORDER BY annee DESC, mois DESC;
 
 
+drop view v_statistique_annonce;
 create or replace view v_statistique_annonce as
 SELECT idetat,COUNT(*) as nbr , EXTRACT(YEAR FROM c.date) AS annee, EXTRACT(MONTH FROM c.date) AS mois
 FROM historiqueetat AS c 
 GROUP BY annee, mois,idetat
-ORDER BY annee DESC, mois DESC;
+ORDER BY annee ASC, mois ASC;
+
+
+
+
+
+
+
 select * from v_statistique_annonce;
 select
         * 
@@ -258,3 +325,38 @@ select
     where
         email='marieclaudiarasolonjatovo@gmail.com'
         and motdepasse='mertina5041';
+
+
+create table commission (
+    idcommission bigint primary key,
+    bornea double precision,
+    borneb double precision,
+    pourcentage  double precision
+);
+
+select * from v_commision_vente;
+
+drop view v_commision_vente;
+
+create or replace view v_commision_vente as
+select sum(commission),EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois from caracteristique 
+join historiqueetat 
+on caracteristique.idcaracteristique=historiqueetat.idcaracteristique where historiqueetat.idetat=3 group by annee,mois;
+
+select * from v_commision_vente;
+
+
+select historiqueetat.idetat,nommarque,idmarque,COUNT(*), EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois
+from 
+historiqueetat join 
+v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique 
+GROUP by nommarque,idmarque ,annee, mois,historiqueetat.idetat
+ORDER BY annee ASC, mois ASC;
+
+
+select historiqueetat.idetat,nommarque,idmarque,COUNT(idmarque),EXTRACT(YEAR FROM historiqueetat.date) AS annee, EXTRACT(MONTH FROM historiqueetat.date) AS mois
+from 
+historiqueetat join 
+v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique 
+GROUP by nommarque,idmarque ,annee, mois,historiqueetat.idetat
+ORDER BY annee ASC, mois ASC;

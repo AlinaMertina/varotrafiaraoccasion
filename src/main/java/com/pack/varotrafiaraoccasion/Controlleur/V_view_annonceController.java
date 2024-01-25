@@ -1,5 +1,7 @@
 package com.pack.varotrafiaraoccasion.Controlleur;
+import com.pack.varotrafiaraoccasion.Entity.Historiqueetat;
 import com.pack.varotrafiaraoccasion.Entity.V_view_annonce;
+import com.pack.varotrafiaraoccasion.Repository.HistoriqueetatRepository;
 import com.pack.varotrafiaraoccasion.Service.V_view_annonceService;
 import java.text.SimpleDateFormat;
 
@@ -21,25 +23,30 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.pack.varotrafiaraoccasion.Work.UpdateEtat;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping
+@RequiredArgsConstructor 
 public class V_view_annonceController {
 
     int borneA=0;
     int borneB=0;
 
     private final V_view_annonceService v_view_annonceService;
-    
-    @Autowired
-    public V_view_annonceController(V_view_annonceService v_view_annonceService){
-        this.v_view_annonceService= v_view_annonceService;
-    }
+    private final HistoriqueetatRepository historiqueetatRepository;
+    // @Autowired
+    // public V_view_annonceController(V_view_annonceService v_view_annonceService){
+    //     this.v_view_annonceService= v_view_annonceService;
+    // }
     // modif_statu(Long id,Long idcaractere)
     
     @PostMapping("/varotrafiaraback/updateetatannonce")
     public Returntype updateEtat(@RequestBody UpdateEtat  updateEtat){
         Returntype returntype = new Returntype();
         try {
+            Historiqueetat historiqueetat = new Historiqueetat(null, updateEtat.getIdcaracteristique(), updateEtat.getIdetat(), new java.util.Date());
+            historiqueetatRepository.save(historiqueetat);
             Requete.modif_statu(updateEtat.getIdetat(), updateEtat.getIdcaracteristique());
             returntype = new Returntype(null,"modifi");
         } catch (Exception e) {

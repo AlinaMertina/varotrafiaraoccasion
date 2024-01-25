@@ -192,3 +192,5 @@ insert into photocaracteristique values (30,6,'f947a2a581389a1c9f0c52aff92e17d8.
 select idequipement,nomequipement,nomimage from v_liste_annonce WHERE idcaracteristique=1;
 
 select * from photocaracteristique;
+
+select COUNT(*) from historiqueetat join caracteristique on historiqueetat.idcaracteristique=caracteristique.idcaracteristique where idetat=1 and idfmarque=7;

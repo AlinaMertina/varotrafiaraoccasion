@@ -1,6 +1,7 @@
 package com.pack.varotrafiaraoccasion.Controlleur;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pack.varotrafiaraoccasion.Entity.Caracteristique;
+import com.pack.varotrafiaraoccasion.Entity.Commission;
 import com.pack.varotrafiaraoccasion.Entity.Detaillecaequipement;
 import com.pack.varotrafiaraoccasion.Entity.Photocaracteristique;
 import com.pack.varotrafiaraoccasion.Service.CaracteristiqueService;
@@ -110,7 +111,9 @@ public class PhotocaracteristiqueController {
             returntype = new Returntype(null,uploadMultipleFiles(table.getImages()));
           
             System.out.println("caracteriswtique: "+caracteristique.getAutonomie());
+            caracteristique.setCommission(new Commission().getcommission(caracteristique.getPrixdevente()));
             caracteristiqueService.update(caracteristique);
+
             Long[] listeequipement = table.getEquipements();
            
             for(int i=0;i<listeequipement.length;i++){

@@ -923,3 +923,93 @@ insert into historiqueetat values
 (122, 39, 3, '2024-01-13'),
 (123, 40, 3, '2024-01-11'),
 (124, 41, 3, '2024-01-12');
+
+update  caracteristique set commission=0.0 where  idcaracteristique=3;
+update  caracteristique set commission=0.0 where  idcaracteristique=4;
+update  caracteristique set commission=0.0 where  idcaracteristique=5;
+update  caracteristique set commission=0.0 where  idcaracteristique=6;
+update  caracteristique set commission=15000.0 where  idcaracteristique=13;
+update  caracteristique set commission=0.0 where  idcaracteristique=1;
+update  caracteristique set commission=0.0 where  idcaracteristique=2;
+update  caracteristique set commission=15000.0 where  idcaracteristique=14;
+update  caracteristique set commission=15000.0 where  idcaracteristique=15;
+update  caracteristique set commission=15000.0 where  idcaracteristique=12;
+update  caracteristique set commission=15000.0 where  idcaracteristique=16;
+update  caracteristique set commission=110000.0 where  idcaracteristique=27;
+update  caracteristique set commission=110000.0 where  idcaracteristique=28;
+update  caracteristique set commission=110000.0 where  idcaracteristique=29;
+update  caracteristique set commission=110000.0 where  idcaracteristique=30;
+update  caracteristique set commission=110000.0 where  idcaracteristique=31;
+update  caracteristique set commission=110000.0 where  idcaracteristique=32;
+update  caracteristique set commission=110000.0 where  idcaracteristique=33;
+update  caracteristique set commission=110000.0 where  idcaracteristique=34;
+update  caracteristique set commission=110000.0 where  idcaracteristique=40;
+update  caracteristique set commission=110000.0 where  idcaracteristique=41;
+update  caracteristique set commission=110000.0 where  idcaracteristique=42;
+update  caracteristique set commission=110000.0 where  idcaracteristique=35;
+update  caracteristique set commission=110000.0 where  idcaracteristique=36;
+update  caracteristique set commission=110000.0 where  idcaracteristique=37;
+update  caracteristique set commission=110000.0 where  idcaracteristique=38;
+update  caracteristique set commission=110000.0 where  idcaracteristique=39;
+update  caracteristique set commission=645000.0 where  idcaracteristique=51;
+update  caracteristique set commission=645000.0 where  idcaracteristique=52;
+update  caracteristique set commission=645000.0 where  idcaracteristique=53;
+update  caracteristique set commission=645000.0 where  idcaracteristique=54;
+update  caracteristique set commission=25000.0 where  idcaracteristique=18;
+update  caracteristique set commission=25000.0 where  idcaracteristique=19;
+update  caracteristique set commission=25000.0 where  idcaracteristique=17;
+update  caracteristique set commission=110000.0 where  idcaracteristique=43;
+update  caracteristique set commission=110000.0 where  idcaracteristique=44;
+update  caracteristique set commission=110000.0 where  idcaracteristique=45;
+update  caracteristique set commission=110000.0 where  idcaracteristique=46;
+update  caracteristique set commission=110000.0 where  idcaracteristique=47;
+update  caracteristique set commission=110000.0 where  idcaracteristique=48;
+update  caracteristique set commission=645000.0 where  idcaracteristique=55;
+update  caracteristique set commission=645000.0 where  idcaracteristique=56;
+update  caracteristique set commission=645000.0 where  idcaracteristique=57;
+update  caracteristique set commission=645000.0 where  idcaracteristique=58;
+update  caracteristique set commission=645000.0 where  idcaracteristique=59;
+update  caracteristique set commission=645000.0 where  idcaracteristique=60;
+update  caracteristique set commission=945000.0 where  idcaracteristique=61;
+update  caracteristique set commission=945000.0 where  idcaracteristique=62;
+update  caracteristique set commission=945000.0 where  idcaracteristique=63;
+update  caracteristique set commission=945000.0 where  idcaracteristique=64;
+update  caracteristique set commission=945000.0 where  idcaracteristique=65;
+update  caracteristique set commission=945000.0 where  idcaracteristique=66;
+update  caracteristique set commission=945000.0 where  idcaracteristique=67;
+update  caracteristique set commission=25000.0 where  idcaracteristique=20;
+update  caracteristique set commission=25000.0 where  idcaracteristique=21;
+update  caracteristique set commission=25000.0 where  idcaracteristique=22;
+update  caracteristique set commission=25000.0 where  idcaracteristique=23;
+update  caracteristique set commission=25000.0 where  idcaracteristique=24;
+update  caracteristique set commission=25000.0 where  idcaracteristique=25;
+update  caracteristique set commission=110000.0 where  idcaracteristique=26;
+update  caracteristique set commission=945000.0 where  idcaracteristique=68;
+update  caracteristique set commission=945000.0 where  idcaracteristique=69;
+update  caracteristique set commission=945000.0 where  idcaracteristique=70;
+update  caracteristique set commission=945000.0 where  idcaracteristique=71;
+update  caracteristique set commission=945000.0 where  idcaracteristique=72;
+update  caracteristique set commission=945000.0 where  idcaracteristique=73;
+update  caracteristique set commission=110000.0 where  idcaracteristique=49;
+update  caracteristique set commission=110000.0 where  idcaracteristique=50;
+update  caracteristique set commission=945000.0 where  idcaracteristique=74;
+update  caracteristique set commission=945000.0 where  idcaracteristique=75;
+update  caracteristique set commission=945000.0 where  idcaracteristique=76;
+update  caracteristique set commission=945000.0 where  idcaracteristique=77;
+update  caracteristique set commission=945000.0 where  idcaracteristique=78;
+update  caracteristique set commission=945000.0 where  idcaracteristique=79;
+update  caracteristique set commission=945000.0 where  idcaracteristique=80;
+update  caracteristique set commission=945000.0 where  idcaracteristique=81;
+update  caracteristique set commission=945000.0 where  idcaracteristique=82;
+update  caracteristique set commission=945000.0 where  idcaracteristique=83;
+update  caracteristique set commission=945000.0 where  idcaracteristique=84;
+update  caracteristique set commission=945000.0 where  idcaracteristique=85;
+
+
+select COUNT(historiqueetat.idcaracteristique) AS count,
+    EXTRACT(YEAR FROM historiqueetat.date) AS annee,
+    EXTRACT(MONTH FROM historiqueetat.date) AS mois rom 
+historiqueetat join 
+v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique 
+GROUP by nommarque,idmarque ,annee, mois,historiqueetat.idetat
+ORDER BY annee ASC, mois ASC;

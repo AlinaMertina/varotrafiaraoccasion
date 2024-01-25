@@ -1,6 +1,7 @@
 package com.pack.varotrafiaraoccasion.Controlleur;
 import com.pack.varotrafiaraoccasion.Entity.Administrateur;
 import com.pack.varotrafiaraoccasion.Entity.Client;
+import com.pack.varotrafiaraoccasion.Entity.Commission;
 import com.pack.varotrafiaraoccasion.Entity.Utilisateur;
 import com.pack.varotrafiaraoccasion.Security.Config.AuthenticationService;
 import com.pack.varotrafiaraoccasion.Service.AdministrateurService;
@@ -39,6 +40,8 @@ public class AdministrateurController {
         private final AdministrateurService adminService;  
         private final AdministrateurService administrateurService;
     
+    
+
     @PostMapping("/varotrafiaraback/loginback")
     public Returntype connexionfront(@RequestBody Utilisateur utilisateur,HttpSession httpSession){
         Returntype returntype = new Returntype();
