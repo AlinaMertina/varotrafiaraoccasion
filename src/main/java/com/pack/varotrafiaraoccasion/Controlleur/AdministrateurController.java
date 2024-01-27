@@ -40,7 +40,9 @@ public class AdministrateurController {
         private final AdministrateurService adminService;  
         private final AdministrateurService administrateurService;
     
-    
+    //fonction client
+
+    //fin fonction client
 
     @PostMapping("/varotrafiaraback/loginback")
     public Returntype connexionfront(@RequestBody Utilisateur utilisateur,HttpSession httpSession){

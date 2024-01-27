@@ -1,6 +1,8 @@
 
 package com.pack.varotrafiaraoccasion.Entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -62,4 +64,13 @@ public class Validation{
               public Double getCommissionvalidation(){
                   return this.commissionvalidation;
               }
+
+            public Validation(Long idvalidation, Date datevalidation, Long idcaracteristique, Long idadministrateur,
+                    Double commissionvalidation) {
+                this.idvalidation = idvalidation;
+                this.datevalidation = datevalidation;
+                this.idcaracteristique = idcaracteristique;
+                this.idadministrateur = idadministrateur;
+                this.commissionvalidation = commissionvalidation;
+            }
 }

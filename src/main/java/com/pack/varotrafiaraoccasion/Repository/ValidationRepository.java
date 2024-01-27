@@ -7,4 +7,6 @@ public interface ValidationRepository  extends JpaRepository<Validation,Long>{
     
     @Query(value = "select * from validation where idvalidation=:idvalidation", nativeQuery = true)
     public java.util.Optional<Validation> findOne(@Param("idvalidation") Long idvalidation);
+
+
 }

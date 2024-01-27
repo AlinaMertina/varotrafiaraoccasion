@@ -1,9 +1,12 @@
 package com.pack.varotrafiaraoccasion.Controlleur;
 import com.pack.varotrafiaraoccasion.Entity.Historiqueetat;
 import com.pack.varotrafiaraoccasion.Entity.V_view_annonce;
+import com.pack.varotrafiaraoccasion.Entity.Validation;
 import com.pack.varotrafiaraoccasion.Repository.HistoriqueetatRepository;
+import com.pack.varotrafiaraoccasion.Repository.ValidationRepository;
 import com.pack.varotrafiaraoccasion.Service.V_view_annonceService;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.pack.varotrafiaraoccasion.Work.Requete;
 import com.pack.varotrafiaraoccasion.Work.Returntype;
@@ -22,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.pack.varotrafiaraoccasion.Work.UpdateEtat;
+import com.pack.varotrafiaraoccasion.Work.ValideAnnonceAdmin;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,12 +39,30 @@ public class V_view_annonceController {
 
     private final V_view_annonceService v_view_annonceService;
     private final HistoriqueetatRepository historiqueetatRepository;
+    private final ValidationRepository validationRepository;
     // @Autowired
     // public V_view_annonceController(V_view_annonceService v_view_annonceService){
     //     this.v_view_annonceService= v_view_annonceService;
     // }
     // modif_statu(Long id,Long idcaractere)
     
+    @PostMapping("/varotrafiaraback/valideannonce")
+    public Returntype validerAnnonce(@RequestBody ValideAnnonceAdmin  updateEtat){
+        Returntype returntype = new Returntype();
+        try {
+            Historiqueetat historiqueetat = new Historiqueetat(null, updateEtat.getIdcaracteristique(), updateEtat.getIdetat(), new java.util.Date());
+            historiqueetatRepository.save(historiqueetat);
+            Requete.modif_statu(updateEtat.getIdetat(), updateEtat.getIdcaracteristique());
+            Validation validation = new Validation(null, new Date(), updateEtat.getIdcaracteristique(), updateEtat.getIdadmin(), 0.0);
+            validationRepository.save(validation);
+            returntype = new Returntype(null,"modifi");
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
     @PostMapping("/varotrafiaraback/updateetatannonce")
     public Returntype updateEtat(@RequestBody UpdateEtat  updateEtat){
         Returntype returntype = new Returntype();

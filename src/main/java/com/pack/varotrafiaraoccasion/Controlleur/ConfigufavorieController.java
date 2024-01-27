@@ -1,14 +1,8 @@
 package com.pack.varotrafiaraoccasion.Controlleur;
-import com.pack.varotrafiaraoccasion.Entity.Favorie;
+import com.pack.varotrafiaraoccasion.Entity.Configufavorie;
 import com.pack.varotrafiaraoccasion.Service.ConfigufavorieService;
-import com.pack.varotrafiaraoccasion.Service.FavorieService;
 import java.text.SimpleDateFormat;
-
-import com.pack.varotrafiaraoccasion.Work.NombreFavorie;
 import com.pack.varotrafiaraoccasion.Work.Returntype;
-
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,30 +19,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping
-@RequiredArgsConstructor
-public class FavorieController {
+public class ConfigufavorieController {
 
-    private final FavorieService favorieService;
-    private final ConfigufavorieService configufavorieService;
+ private final ConfigufavorieService configufavorieService;
     
-
-    @GetMapping("/varotrafiaraback/favoriesnbr")
-    public Returntype findAllnbr(){
-        Returntype returntype = new Returntype();
-        try {
-            returntype = new Returntype(null,new NombreFavorie().findAll(configufavorieService.findAll()));
-        } catch (Exception e) {
-            returntype = new Returntype(e.getMessage(),null);
-            return returntype;
-        }
-        return returntype;
+    @Autowired
+    public ConfigufavorieController(ConfigufavorieService configufavorieService){
+        this.configufavorieService= configufavorieService;
     }
 
-    @GetMapping("/varotrafiaraback/favories")
+    @GetMapping("/varotrafiaraback/configufavories")
     public Returntype findAll(){
         Returntype returntype = new Returntype();
         try {
-            returntype = new Returntype(null,favorieService.findAll());
+            returntype = new Returntype(null,configufavorieService.findAll());
         } catch (Exception e) {
             returntype = new Returntype(e.getMessage(),null);
             return returntype;
@@ -56,13 +40,11 @@ public class FavorieController {
         return returntype;
     }
 
-    // findAll()
-
-    @GetMapping("/varotrafiaraback/favorie")
-    public Returntype findOne( @RequestParam("id") Long idFavorie ){
+    @GetMapping("/varotrafiaraback/configufavorie")
+    public Returntype findOne( @RequestParam("id") Long idConfigufavorie ){
         Returntype returntype = new Returntype();
         try {
-            returntype = new Returntype(null,favorieService.findOne(idFavorie));
+            returntype = new Returntype(null,configufavorieService.findOne(idConfigufavorie));
         } catch (Exception e) {
             returntype = new Returntype(e.getMessage(),null);
             return returntype;
@@ -70,11 +52,11 @@ public class FavorieController {
         return returntype;
     }
 
-    @DeleteMapping("/varotrafiaraback/favorie")
-    public Returntype  delete(@RequestParam("id") Long idFavorie){
+    @DeleteMapping("/varotrafiaraback/configufavorie")
+    public Returntype  delete(@RequestParam("id") Long idConfigufavorie){
         Returntype returntype = new Returntype();
         try {
-            favorieService.delete(idFavorie);
+            configufavorieService.delete(idConfigufavorie);
             returntype = new Returntype(null,"delete");
         } catch (Exception e) {
             returntype = new Returntype(e.getMessage(),null);
@@ -83,11 +65,11 @@ public class FavorieController {
         return returntype;
     }
 
-    @PutMapping("/varotrafiaraback/favorie")
-    public Returntype  update(@RequestBody Favorie table){
+    @PutMapping("/varotrafiaraback/configufavorie")
+    public Returntype  update(@RequestBody Configufavorie table){
         Returntype returntype = new Returntype();
         try {
-            favorieService.update(table);
+            configufavorieService.update(table);
             returntype = new Returntype(null,"update");
         } catch (Exception e) {
             returntype = new Returntype(e.getMessage(),null);
@@ -96,24 +78,13 @@ public class FavorieController {
         return returntype;
     }
 
-    @PostMapping("/varotrafiaraback/favorie")
-    public Returntype  insert(@RequestBody Favorie table){ 
+    @PostMapping("/varotrafiaraback/configufavorie")
+    public Returntype  insert(@RequestBody Configufavorie table){
         Returntype returntype = new Returntype();
         try {
-            java.util.Optional<Favorie> fav = favorieService.findfavorie(table.getIdclient(), table.getIdfcaracteristique());
-            fav.ifPresentOrElse(
-                existingFavorie -> {
-                    favorieService.delete(existingFavorie.getIdfavorie());
-                },
-                () -> {
-                    System.out.println("insert value");
-                    favorieService.update(table);
-                }
-            );
-
+            configufavorieService.update(table);
             returntype = new Returntype(null,"insert");
         } catch (Exception e) {
-            System.out.println("exeption :"+e);
             returntype = new Returntype(e.getMessage(),null);
             return returntype;
         }

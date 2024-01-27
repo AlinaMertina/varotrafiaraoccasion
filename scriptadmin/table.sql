@@ -30,6 +30,8 @@ create table favorie(
     idclient bigint references client(idclient)
 );
 
+
+
 create table typevehicule(
     idtypevehicule bigint primary key,
     nomtypevehicule varchar(50)
@@ -179,6 +181,7 @@ select nomclient,prenomclient,prixdevente,nommarque,nommodel,nomcouleur,nomlocal
 SELECT nextval('photocaracteristique_sequence') AS prochaine_valeur;
 SELECT nextval('detaillecaequipement_sequence') AS prochaine_valeur;
 
+SELECT nextval('historiqueetat_sequence') AS prochaine_valeur;
 
 create table detaillecaequipement(
     iddetaillecaequipement bigint primary key,
@@ -228,6 +231,11 @@ create table validation(
     idadministrateur bigint references administrateur(idadministrateur),
     commissionvalidation double precision
 );
+drop view v_admin_valideannonce;
+create or replace view v_admin_valideannonce as
+select nom,prenom,datevalidation,email,idcaracteristique from validation  join administrateur on validation.idadministrateur=administrateur.idadministrateur;
+select * from v_admin_valideannonce;
+
 
 create table historiqueetat(
     idhistoriqueetat bigint primary key,

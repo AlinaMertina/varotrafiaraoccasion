@@ -126,3 +126,9 @@ SELECT idclient,nomclient,prenomclient,datenaissance,email,nomgenre,tel,nomlocal
 FROM client join localisation on client.idflocalisation=localisation.idlocalisation
 join genre on genre.idgenre=client.idfgenre;
 
+
+
+create view v_infoclient_detaille as 
+select count(*) as nbr,idclient,idetat from historiqueetat  
+join caracteristique on historiqueetat.idcaracteristique=caracteristique.idcaracteristique 
+group by idclient,idetat;
