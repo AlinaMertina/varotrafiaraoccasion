@@ -51,7 +51,7 @@ public class TokenService {
                 .setClaims(extraClaims)// Cette méthode est utilisée pour ajouter des revendications personnalisées au jeton JWT
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt( new java.util.Date(System.currentTimeMillis()))
-                .setExpiration(new java.util.Date(System.currentTimeMillis() + 1000 *60 *24))
+                .setExpiration(new java.util.Date(System.currentTimeMillis() + 10000 *60 *24))
                 // .signWith(getSignInKey(),SignatureAlgorithm.HS256)
                 .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()), SignatureAlgorithm.HS512)
                 .compact();//Cette méthode est utilisée pour finaliser la construction d'un jeton JWT et le transformer en une chaîne compacte.

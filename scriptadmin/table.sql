@@ -368,3 +368,34 @@ historiqueetat join
 v_liste_annonce on historiqueetat.idcaracteristique=v_liste_annonce.idcaracteristique 
 GROUP by nommarque,idmarque ,annee, mois,historiqueetat.idetat
 ORDER BY annee ASC, mois ASC;
+
+
+create table messagepostegres(
+    idmessage bigint primary key,
+    to1 bigint references client(idclient),
+    from2 bigint references client(idclient),
+    content text,
+    datesend timestamp,
+    datelecture timestamp
+);
+create table notification(
+    idnotification bigint primary key,
+    idclient bigint references client(idclient),
+    nbrnotification int
+);
+ALTER TABLE notification
+ALTER COLUMN nbrnotification SET DEFAULT 0;
+
+-- Création de la fonction de notification
+CREATE OR REPLACE FUNCTION notify_message_insert_update()
+RETURNS TRIGGER AS $$
+BEGIN
+    PERFORM pg_notify('message_insert_update', ROW_TO_JSON(NEW)::text);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du déclencheur (trigger) pour les inserts et les updates
+CREATE TRIGGER message_insert_update_trigger
+AFTER INSERT OR UPDATE ON notification
+FOR EACH ROW EXECUTE FUNCTION notify_message_insert_update();

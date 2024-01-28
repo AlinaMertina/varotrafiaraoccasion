@@ -49,7 +49,7 @@ public class SecurityConfiguration {
     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
     .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL).permitAll()
-                                .requestMatchers("/varotrafia/**")
+                                .requestMatchers("/client/**")
                                 // .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name())
                                 // .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name())
                                 // .requestMatchers(PUT, "/api/v1/management/**").hasAnyAuthority(ADMIN_UPDATE.name())

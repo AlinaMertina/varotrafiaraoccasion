@@ -57,7 +57,8 @@ public class V_liste_annonceController {
         }
         return returntype;
     }
-    @PostMapping("/varotrafiaraback/v_liste_annoncesfavorie")
+   
+    @PostMapping("/client/v_liste_annoncesfavorie")
     public Returntype findListeFavorie(@RequestBody Long id){
         Returntype returntype = new Returntype();
         try {
