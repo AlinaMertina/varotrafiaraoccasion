@@ -31,7 +31,19 @@ public class V_liste_annonceController {
 
     private final V_liste_annonceService v_liste_annonceService;
     private final CaracteristiqueService caracteristiqueService;
-   
+
+    @PostMapping("/client/v_liste_annonceshistorique")
+    public Returntype findAllHistoriqueclient(@RequestBody Long id){
+        System.out.println("historique");
+        Returntype returntype = new Returntype();
+        try {
+            returntype = new Returntype(null,v_liste_annonceService.findAllHistorique(id));
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
 
     @PostMapping("/varotrafiaraback/v_liste_annonceshistorique")
     public Returntype findAllHistorique(@RequestBody Long id){
@@ -129,6 +141,7 @@ public class V_liste_annonceController {
         }
         return returntype;
     }
+
 
     @GetMapping("/varotrafiaraback/v_liste_annonce")
     public Returntype findOne( @RequestParam("id") Long idV_liste_annonce ){

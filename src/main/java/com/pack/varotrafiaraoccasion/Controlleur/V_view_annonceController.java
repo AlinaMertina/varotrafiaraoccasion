@@ -78,6 +78,19 @@ public class V_view_annonceController {
         return returntype;
     }
 
+    @PostMapping("/client/v_view_annonceallview")
+    public Returntype allViewclient(@RequestBody Long  idclient){
+        System.out.println("idclient precedent:"+idclient);
+        Returntype returntype = new Returntype();
+        try {
+            returntype = new Returntype(null,v_view_annonceService.allView(idclient));
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
     @PostMapping("/varotrafiaraback/v_view_annonceallview")
     public Returntype allView(@RequestBody Long  idclient){
         System.out.println("idclient precedent:"+idclient);

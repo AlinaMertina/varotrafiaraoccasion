@@ -45,6 +45,18 @@ public class MessagepostegresController {
         }
         return returntype;
     }
+    @PostMapping("/client/conversation")
+    public Returntype findConversationclient( @RequestBody GetConversation getconv){
+        Returntype returntype = new Returntype();
+        try {
+            System.out.println("conversation "+getconv.getId()+" "+getconv.getId1());
+            returntype = new Returntype(null,new Messagepostegres().findAll(getconv.getId(),getconv.getId1()));
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
     @PostMapping("/varotrafiaraback/conversation")
     public Returntype findConversation( @RequestBody GetConversation getconv){
         Returntype returntype = new Returntype();
