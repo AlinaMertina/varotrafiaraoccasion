@@ -13,6 +13,14 @@ create table configufavorie (
     borneb double precision,
     nombre int
 );
+insert into configufavorie values(1,1,20,1);
+insert into configufavorie values(2,20,50,2);
+insert into configufavorie values(3,50,60,3);
+insert into configufavorie values(4,60,100,4);
+insert into configufavorie values(5,100,200,5);
+
+
+select * from favorietest;
 
 
 INSERT INTO favorietest(idfcaracteristique,idclient) VALUES

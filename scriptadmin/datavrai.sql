@@ -66,7 +66,6 @@ insert into caracteristique values (74,1,1,1,7,1,7,7,7, 550.5,75000.25,'2019-05-
 insert into caracteristique values (75,1,1,1,7,1,7,1,7, 550.5,75000.25,'2019-05-15','2023-01-23',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 insert into caracteristique values (76,1,1,1,8,2,8,2,8, 550.5,75000.25,'2019-05-15','2023-01-24',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 insert into caracteristique values (77,2,1,1,8,2,8,3,8, 550.5,75000.25,'2019-05-15','2023-01-20',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
-insert into caracteristique values (78,2,1,1,8,2,8,4,8, 550.5,75000.25,'2019-05-15','2023-01-21',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 insert into caracteristique values (78,2,1,1,8,2,8,5,8, 550.5,75000.25,'2019-05-15','2023-01-22',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 insert into caracteristique values (79,2,1,1,8,2,8,6,8, 550.5,75000.25,'2019-05-15','2023-01-23',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 insert into caracteristique values (80,2,1,1,8,2,8,7,8, 550.5,75000.25,'2019-05-15','2023-01-24',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
@@ -76,7 +75,7 @@ insert into caracteristique values (83,3,1,1,8,3,8,3,8, 550.5,75000.25,'2019-05-
 insert into caracteristique values (84,3,1,1,8,3,8,4,8, 550.5,75000.25,'2019-05-15','2023-01-23',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 insert into caracteristique values (85,3,1,1,8,3,8,5,8, 550.5,75000.25,'2019-05-15','2023-01-24',65.75, 6.8,18500.0,4,5,4.75,1.85,1.65,500.25,20);
 
-
+select * from detaillecaequipement;
 insert into detaillecaequipement values (33,12,1);
 insert into detaillecaequipement values (34,12,2);
 insert into detaillecaequipement values (35,12,3);
@@ -84,6 +83,7 @@ insert into detaillecaequipement values (36,12,4);
 insert into detaillecaequipement values (37,13,5);
 insert into detaillecaequipement values (38,13,6);
 insert into detaillecaequipement values (39,13,7);
+
 insert into detaillecaequipement values (40,14,8);
 insert into detaillecaequipement values (41,14,9);
 insert into detaillecaequipement values (42,14,10);
@@ -136,6 +136,7 @@ insert into detaillecaequipement values (91,30,4);
 insert into detaillecaequipement values (92,30,5);
 insert into detaillecaequipement values (93,31,6);
 insert into detaillecaequipement values (94,32,7);
+
 insert into detaillecaequipement values (95,33,8);
 insert into detaillecaequipement values (96,34,9);
 insert into detaillecaequipement values (97,35,10);
@@ -231,6 +232,7 @@ insert into detaillecaequipement values (187,63,10);
 insert into detaillecaequipement values (188,64,11);
 insert into detaillecaequipement values (189,64,12);
 insert into detaillecaequipement values (190,64,13);
+
 insert into detaillecaequipement values (191,64,1);
 insert into detaillecaequipement values (192,65,2);
 insert into detaillecaequipement values (193,65,3);
@@ -320,6 +322,7 @@ insert into detaillecaequipement values (277,85,2);
 insert into detaillecaequipement values (278,85,3);
 insert into detaillecaequipement values (279,85,4);
 
+select * from photocaracteristique;
 
 insert into photocaracteristique values (46,12,'2a3763f230ca43682c1435d548706df0.jpg');
 insert into photocaracteristique values (47,12,'3e892d49e833b6c750bfcd8855210848.jpg');
@@ -389,7 +392,7 @@ insert into photocaracteristique values (97,21,'6474c14123450a77b5b3b74d863e7932
 
 insert into photocaracteristique values (98,22,'2a3763f230ca43682c1435d548706df0.jpg');
 insert into photocaracteristique values (99,22,'3e892d49e833b6c750bfcd8855210848.jpg');
-insert into photocaracteristique values (90,22,'8b188b01c93c5040af4bd5b9b5083c88.jpg');
+insert into photocaracteristique values (438,22,'8b188b01c93c5040af4bd5b9b5083c88.jpg');
 insert into photocaracteristique values (100,22,'341b50f8370f2863f7f557fc5caceab2.jpg');
 insert into photocaracteristique values (101,22,'6474c14123450a77b5b3b74d863e7932.jpg');
 
@@ -581,7 +584,7 @@ insert into photocaracteristique values (266,53,'6474c14123450a77b5b3b74d863e793
 
 
 insert into photocaracteristique values (267,54,'2a3763f230ca43682c1435d548706df0.jpg');
-insert into photocaracteristique values (267,54,'3e892d49e833b6c750bfcd8855210848.jpg');
+insert into photocaracteristique values (440,54,'3e892d49e833b6c750bfcd8855210848.jpg');
 insert into photocaracteristique values (268,54,'8b188b01c93c5040af4bd5b9b5083c88.jpg');
 insert into photocaracteristique values (269,54,'341b50f8370f2863f7f557fc5caceab2.jpg');
 insert into photocaracteristique values (270,54,'6474c14123450a77b5b3b74d863e7932.jpg');
@@ -722,7 +725,7 @@ insert into photocaracteristique values (388,76,'8b188b01c93c5040af4bd5b9b5083c8
 insert into photocaracteristique values (389,76,'341b50f8370f2863f7f557fc5caceab2.jpg');
 insert into photocaracteristique values (390,76,'6474c14123450a77b5b3b74d863e7932.jpg');
 
-insert into photocaracteristique values (390,77,'2a3763f230ca43682c1435d548706df0.jpg');
+insert into photocaracteristique values (443,77,'2a3763f230ca43682c1435d548706df0.jpg');
 insert into photocaracteristique values (391,77,'3e892d49e833b6c750bfcd8855210848.jpg');
 insert into photocaracteristique values (392,77,'8b188b01c93c5040af4bd5b9b5083c88.jpg');
 insert into photocaracteristique values (393,77,'341b50f8370f2863f7f557fc5caceab2.jpg');
@@ -871,10 +874,8 @@ insert into historiqueetat values
 (81, 17, 2, '2023-09-13'),
 (82, 18, 2, '2023-09-11'),
 (83, 19, 2, '2023-09-12'),
-
 (84, 20, 2, '2023-10-13'),
 (85, 21, 2, '2023-10-11'),
-
 (86, 22, 2, '2023-11-12'),
 (87, 23, 2, '2023-11-13'),
 (88, 24, 2, '2023-11-11'),
@@ -885,11 +886,9 @@ insert into historiqueetat values
 (93, 24, 2, '2023-11-11'),
 (94, 25, 2, '2023-11-12'),
 (95, 26, 2, '2023-11-13'),
-
 (96, 28, 2, '2023-12-12'),
 (97, 29, 2, '2023-12-13'),
 (98, 30, 2, '2023-12-11'),
-
 (99, 36, 2, '2024-01-12'),
 (100, 37, 2, '2024-01-13'),
 (101, 38, 2, '2024-01-12'),
@@ -905,18 +904,14 @@ insert into historiqueetat values
 (108, 14, 3, '2023-09-13'),
 (109, 15, 3, '2023-09-13'),
 (110, 16, 3, '2023-09-12'),
-
 (111, 20, 3, '2023-10-13'),
 (112, 21, 3, '2023-10-11'),
-
 (113, 22, 3, '2023-11-12'),
 (114, 23, 3, '2023-11-13'),
 (115, 24, 3, '2023-11-11'),
-
 (116, 26, 3, '2023-12-12'),
 (117, 29, 3, '2023-12-13'),
 (118, 30, 3, '2023-12-11'),
-
 (119, 36, 3, '2024-01-12'),
 (120, 37, 3, '2024-01-13'),
 (121, 38, 3, '2024-01-12'),

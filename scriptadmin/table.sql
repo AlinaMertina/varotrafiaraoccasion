@@ -2,6 +2,7 @@ create database backvarotrafiara;
 \c backvarotrafiara;
 
 
+
 create or replace view v_nbr_post as
 SELECT COUNT(*), EXTRACT(YEAR FROM c.annemodel) AS annee, EXTRACT(MONTH FROM c.annemodel) AS mois
 FROM caracteristique AS c
@@ -15,84 +16,24 @@ drop table  Utilisateur;
 
 select * from client;
 
-create table Utilisateur (
-    id bigint primary key,
-    pseudo text,
-    password text,
-    role text
-);
+
 delete Utilisateur;
 insert into Utilisateur(id,pseudo,password,role) values (1,'mertinaclaudietoto@gmail.com','$2a$10$GmheAiXgI.d8IPWOTjTvw..1Ew15G4M7Rj09JfTi/vXmnLVjHnztC',null);
 
-create table favorie(
-    idfavorie bigint  primary key,
-    idfcaracteristique bigint references caracteristique(idcaracteristique),
-    idclient bigint references client(idclient)
-);
 
 
 
-create table typevehicule(
-    idtypevehicule bigint primary key,
-    nomtypevehicule varchar(50)
-);
-create table marque (
-    idmarque bigint primary key,
-    nommarque varchar(100)
-);
-
-create table model(
-    idmodel bigint primary key,
-    nommodel varchar(100),
-    idfmarque bigint references marque(idmarque)
-);
-
-create table energie(
-    idenergie bigint primary key,
-    nomenergie varchar(100)
-);
-
-create table equipement(
-    idequipement  bigint primary key,
-    nomequipement varchar(100)
-);
 
 
-create table couleur(
-    idcouleur bigint primary key,
-    nomcouleur varchar(100)
-);
-create table localisation(
-    idlocalisation bigint primary key,
-    nomlocalisation varchar(100)
-);
-create table boitdevitesse(
-    idboitedevitesse bigint primary key,
-    nomboitdereception varchar(100)
-);
-create table genre(
-    idgenre bigint primary key,
-    nomgenre varchar(20)
-);
+
+
 -- Changer le type de colonne de integer à bigint
 ALTER TABLE client
 ALTER COLUMN motdepasse TYPE text;
 update client set motdepasse='mertina';
 
 update client set motdepasse='$2a$10$GmheAiXgI.d8IPWOTjTvw..1Ew15G4M7Rj09JfTi/vXmnLVjHnztC';
-create table client(
-    idclient bigint primary key,
-    nomclient varchar(100),
-    prenomclient varchar(100),
-    datenaissance date,
-    email text,
-    motdepasse varchar(20),
-    idfgenre bigint references genre(idgenre),
-    tel text,
-    idflocalisation bigint references localisation(idlocalisation)
-);
-ALTER TABLE client
-ADD CONSTRAINT emailunique UNIQUE (email);
+
 
 create table clientdateinscription(
     idclientdateinscription bigint primary key,
