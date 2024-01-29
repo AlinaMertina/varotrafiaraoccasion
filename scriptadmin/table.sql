@@ -94,7 +94,7 @@ update caracteristique set prixdevente=550000  WHERE idcaracteristique BETWEEN 2
 update caracteristique set prixdevente=2150000  WHERE idcaracteristique BETWEEN 51 AND 60;
 update caracteristique set prixdevente=3150000  WHERE idcaracteristique BETWEEN 61 AND 85;
 
-
+select * from commission;
 
 
 -- update caracteristique set  where idcaracteristique=1;

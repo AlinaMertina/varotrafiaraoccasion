@@ -34,8 +34,10 @@ public class V_liste_annonceService {
 
     public java.util.List<V_liste_annonce> findAllHistorique(Long id){
         java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
-        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
-        java.util.List<V_liste_annonce>liste = Requete.findAllrequeteAnnonceIdclient(id);
+        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();findAllHistorique(Long id)
+        // java.util.List<V_liste_annonce>liste = Requete.findAllrequeteAnnonceIdclient(id);
+        java.util.List<V_liste_annonce>liste = Requete.findAllHistorique(id);
+
         Long a= 0L;
         for(int i =0;i <liste.size() ;i++ ){
             V_liste_annonce an = liste.get(i);

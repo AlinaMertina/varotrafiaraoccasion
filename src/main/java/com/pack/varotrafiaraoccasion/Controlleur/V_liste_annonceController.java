@@ -36,6 +36,7 @@ public class V_liste_annonceController {
     public Returntype findAllHistoriqueclient(@RequestBody Long id){
         System.out.println("historique");
         Returntype returntype = new Returntype();
+        
         try {
             returntype = new Returntype(null,v_liste_annonceService.findAllHistorique(id));
         } catch (Exception e) {

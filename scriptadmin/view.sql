@@ -121,6 +121,7 @@ select nom,prenom,nbrage from personne left join age on personne.idpersonne=age.
 
 select   idfavorie,consomation,idclient,idphotocaracteristique,idcaracteristique,commission,volumeducoffre,hauteur,largeur,longueur,nbrplace,nbrporte,prixdevente,capacite,annemodel,anneedefabrication,kilometrage,autonomie,nomlocalisation,idlocalisation,nometat,idetat,nomboitdereception,idboitedevitesse,nommarque,idmarque,nommodel,idmodel,nomenergie,idenergie,nomtypevehicule,idtypevehicule,nomcouleur,idcouleur,nomclient,prenomclient,tel,email,idequipement,nomequipement,nomimage from v_liste_annonce   left join (select idfavorie,idfcaracteristique from favorie where idclient=1)  as fa on fa.idfcaracteristique=v_liste_annonce.idcaracteristique where idetat!=1 and idclient=1;
 drop view v_info_client;
+
 CREATE VIEW v_info_client AS
 SELECT idclient,nomclient,prenomclient,datenaissance,email,nomgenre,tel,nomlocalisation
 FROM client join localisation on client.idflocalisation=localisation.idlocalisation
