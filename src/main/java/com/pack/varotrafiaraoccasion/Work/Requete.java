@@ -80,7 +80,7 @@ public class Requete {
             ConnectionPostgres con = new ConnectionPostgres();
             Connection connection = con.getconnexion();
                 Statement statement = connection.createStatement();
-                String query = "select   idfavorie,consomation,idclient,idphotocaracteristique,idcaracteristique,commission,volumeducoffre,hauteur,largeur,longueur,nbrplace,nbrporte,prixdevente,capacite,annemodel,anneedefabrication,kilometrage,autonomie,nomlocalisation,idlocalisation,nometat,idetat,nomboitdereception,idboitedevitesse,nommarque,idmarque,nommodel,idmodel,nomenergie,idenergie,nomtypevehicule,idtypevehicule,nomcouleur,idcouleur,nomclient,prenomclient,tel,email,idequipement,nomequipement,nomimage from v_liste_annonce   where idclient="+id;
+                String query = "select   consomation,idclient,idphotocaracteristique,idcaracteristique,commission,volumeducoffre,hauteur,largeur,longueur,nbrplace,nbrporte,prixdevente,capacite,annemodel,anneedefabrication,kilometrage,autonomie,nomlocalisation,idlocalisation,nometat,idetat,nomboitdereception,idboitedevitesse,nommarque,idmarque,nommodel,idmodel,nomenergie,idenergie,nomtypevehicule,idtypevehicule,nomcouleur,idcouleur,nomclient,prenomclient,tel,email,idequipement,nomequipement,nomimage from v_liste_annonce   where idclient="+id;
                 System.out.println(query);
                 ResultSet resultSet = statement.executeQuery(query);
                 // Traitement des résultats
@@ -128,7 +128,7 @@ public class Requete {
             annonce.setNomequipement(resultSet.getString("nomequipement"));
             annonce.setIdclient(resultSet.getLong("idclient"));
             annonce.setConsomation(resultSet.getDouble("consomation"));
-            annonce.setIdfavorie(resultSet.getLong("idfavorie"));
+            // annonce.setIdfavorie(resultSet.getLong("idfavorie"));
             
             // Ajout de l'objet annonce à la liste resulta
             resulta.add(annonce);
