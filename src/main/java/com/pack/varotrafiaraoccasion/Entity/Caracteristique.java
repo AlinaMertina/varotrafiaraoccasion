@@ -133,9 +133,7 @@ public class Caracteristique{
                   return this.kilometrage;
               }
               public void setAnneedefabrication( java.util.Date anneedefabrication)throws Exception{
-                    if(anneedefabrication.getTime()>anneactuelle.getTime()){
-                            throw new Exception("date de fabrication non valide");
-                    }
+                 
                     this.anneedefabrication=anneedefabrication;
               }
           
@@ -143,10 +141,8 @@ public class Caracteristique{
                   return this.anneedefabrication;
               }
               public void setAnnemodel( java.util.Date annemodel)throws Exception{
-                if(annemodel.getTime()>anneactuelle.getTime()){
-                            throw new Exception("date du model non valide");
-                }
-                  this.annemodel=annemodel;
+              
+                  this.annemodel=new java.util.Date();
               }
           
               public java.util.Date getAnnemodel(){
