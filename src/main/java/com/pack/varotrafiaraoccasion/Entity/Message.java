@@ -1,62 +1,79 @@
 package com.pack.varotrafiaraoccasion.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.*;
-@Document(collection = "message")
+@Document(collection = "message1")
 public class Message{
 
     @Id
-    private String _id;
-    private Long to;
-    private Long from;
+    private String id;
+    private int to1;
+    private int from2;
     private String content;
-    private Date date_sender;
-    private Date date_read;
-    public String get_id() {
-        return _id;
+    private Date datesend;
+    private Date datelecture;
+
+    public String getId() {
+        return id;
     }
-    public void set_id(String _id) {
-        this._id = _id;
+
+    public void setId(String id) {
+        this.id = id;
     }
-    public Long getTo() {
-        return to;
+
+    public int getTo1() {
+        return to1;
     }
-    public void setTo(Long to) {
-        this.to = to;
+
+    public void setTo1(int to1) {
+        this.to1 = to1;
     }
-    public Long getFrom() {
-        return from;
+
+    public int getFrom2() {
+        return from2;
     }
-    public void setFrom(Long from) {
-        this.from = from;
+
+    public void setFrom2(int from2) {
+        this.from2 = from2;
     }
+
     public String getContent() {
         return content;
     }
+
     public void setContent(String content) {
         this.content = content;
     }
-    public Date getDate_sender() {
-        return date_sender;
+
+    public Date getDatesend() {
+        return datesend;
     }
-    public void setDate_sender(Date date_sender) {
-        this.date_sender = date_sender;
+
+    public void setDatesend(Date datesend) {
+        this.datesend = datesend;
     }
-    public Date getDate_read() {
-        return date_read;
+
+    public Date getDatelecture() {
+        return datelecture;
     }
-    public void setDate_read(Date date_read) {
-        this.date_read = date_read;
+
+    public void setDatelecture(Date datelecture) {
+        this.datelecture = datelecture;
     }
-    public Message(String _id, Long to, Long from, String content, Date date_sender, Date date_read) {
-        this._id = _id;
-        this.to = to;
-        this.from = from;
+
+    public Message() {
+
+    }
+
+    public Message(String id, int to1, int from2, String content, Date datesend, Date datelecture) {
+        this.id = id;
+        this.to1 = to1;
+        this.from2 = from2;
         this.content = content;
-        this.date_sender = date_sender;
-        this.date_read = date_read;
+        this.datesend = datesend;
+        this.datelecture = datelecture;
     }
-    
 }
 

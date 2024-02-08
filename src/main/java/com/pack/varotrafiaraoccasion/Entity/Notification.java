@@ -11,8 +11,6 @@ import jakarta.persistence.SequenceGenerator;
 import java.util.*;
 import java.sql.*;
 
-
-
 @Entity
 
 public class Notification{
@@ -57,6 +55,30 @@ public class Notification{
                 this.idnotification = idnotification;
                 this.idclient = idclient;
                 this.nbrnotification = nbrnotification;
+            }
+            public static List<Notification> findAll() {
+                System.out.println("hello find ALL");
+                List<Notification> notifications = new ArrayList<>();
+                try {
+                    ConnectionPostgres con = new ConnectionPostgres();
+                    Connection connection = con.getconnexion();
+                    Statement statement = connection.createStatement();
+                    String query = "SELECT * FROM notification"; // Modifier la requête selon la structure de votre base de données
+                    ResultSet resultSet = statement.executeQuery(query);
+                    while (resultSet.next()) {
+                        Notification notification = new Notification();
+                        notification.setIdnotification(resultSet.getLong("idnotification"));
+                        notification.setIdclient(resultSet.getLong("idclient"));
+                        notification.setNbrnotification(resultSet.getInt("nbrnotification"));
+                        notifications.add(notification);
+                    }
+                    resultSet.close();
+                    statement.close();
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return notifications;
             }
        
 }

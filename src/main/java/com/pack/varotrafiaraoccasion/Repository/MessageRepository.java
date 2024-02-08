@@ -1,15 +1,13 @@
 package com.pack.varotrafiaraoccasion.Repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import com.pack.varotrafiaraoccasion.Entity.Message;
 import java.util.*;
 
-public interface MessageRepository extends MongoRepository<Message, Long> {
+public interface MessageRepository extends MongoRepository<Message, String> {
 
-    @Query("{'$or': [{'to': ?0}, {'from': ?0}]}")
+   /* @Query("{'$or': [{'to': ?0}, {'from': ?0}]}")
     public List<Message> findMessagesByClientId(@Param("id") Long idClient);
 
 
@@ -22,5 +20,9 @@ public interface MessageRepository extends MongoRepository<Message, Long> {
     @Query("{}")
     public List<Message> getClientAll();
 
-    Message save(Message message);
+    Message save(Message message);*/
+   List<Message> findByTo1(int to);
+   List<Message> findByTo1OrFrom2(int to1, int from2);
+
+   Optional<Message> findById(String id);
 }

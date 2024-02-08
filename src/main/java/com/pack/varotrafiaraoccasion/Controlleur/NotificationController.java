@@ -28,8 +28,23 @@ public class NotificationController {
         this.notificationService= notificationService;
     }
 
-    @GetMapping("/varotrafiaraback/getnotification")
-    public Returntype getNotification(@RequestParam("id") Long idNotification){
+    @PostMapping("/varotrafiaraback/readnotification")
+    public Returntype readNotification(@RequestBody Long idclient){
+        // System.out.println(" nbr notification "+idNotification);
+        Returntype returntype = new Returntype();
+        try {
+            notificationService.updatenotif(idclient,0);
+            returntype = new Returntype(null, "valider");
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
+    @PostMapping("/varotrafiaraback/getnotification")
+    public Returntype getNotification(@RequestBody Long idNotification){
+        System.out.println(" nbr notification "+idNotification);
         Returntype returntype = new Returntype();
         try {
             returntype = new Returntype(null,notificationService.getNbrnotification(idNotification) );

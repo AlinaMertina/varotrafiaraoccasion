@@ -14,4 +14,7 @@ public interface NotificationRepository  extends JpaRepository<Notification,Long
     @Query(value = "update notification set nbrnotification=:nbr where idclient=:idclient", nativeQuery = true)
     public void updatenotif(@Param("idclient") Long idnotification,@Param("nbr") Integer nbr);
 
+
+ 
+
 }
