@@ -87,6 +87,7 @@ insert into connecter values (3,3,null);
 insert into connecter values (4,5,null);
 insert into connecter values (5,6,null);
 
+update connecter set datedeconnexion=now() where idclient=:idclient
 
 
 CREATE VIEW v_info_client_chat AS

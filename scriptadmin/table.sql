@@ -340,3 +340,8 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER message_insert_update_trigger
 AFTER INSERT OR UPDATE ON notification
 FOR EACH ROW EXECUTE FUNCTION notify_message_insert_update();
+
+
+select   idfavorie,consomation,idclient,idphotocaracteristique,idcaracteristique,commission,volumeducoffre,hauteur,largeur,longueur,nbrplace,nbrporte,prixdevente,capacite,annemodel,anneedefabrication,kilometrage,autonomie,nomlocalisation,idlocalisation,nometat,idetat,nomboitdereception,idboitedevitesse,nommarque,idmarque,nommodel,idmodel,nomenergie,idenergie,nomtypevehicule,idtypevehicule,nomcouleur,idcouleur,nomclient,prenomclient,tel,email,idequipement,nomequipement,nomimage from v_liste_annonce    join (select idfavorie,idfcaracteristique from favorie where idclient=1)  as fa on fa.idfcaracteristique=v_liste_annonce.idcaracteristique where idetat!=1;
+
+select count(*) from v_liste_annonce;

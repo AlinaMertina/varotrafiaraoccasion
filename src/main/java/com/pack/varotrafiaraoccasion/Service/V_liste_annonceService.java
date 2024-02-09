@@ -50,10 +50,12 @@ public class V_liste_annonceService {
         return resulta;
     }
 
+
     public java.util.List<V_liste_annonce> findAllByIdclient(Long id){
         java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
         // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
         java.util.List<V_liste_annonce>liste = Requete.findAllAnnonceWithFavorie(id);
+        System.out.println("liste e : "+liste.size());
         Long a= 0L;
         for(int i =0;i <liste.size() ;i++ ){
             V_liste_annonce an = liste.get(i);
@@ -83,6 +85,25 @@ public class V_liste_annonceService {
         }
         return resulta;
     }
+
+    public java.util.List<V_liste_annonce> findAllAnnonceAccuilleclient(Long id){
+        java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();
+        // java.util.List<V_liste_annonce>liste = v_liste_annonceRepository.findAll();
+        java.util.List<V_liste_annonce>liste = Requete.findAllAnnonceAccuilleclient(id);
+        Long a= 0L;
+        for(int i =0;i <liste.size() ;i++ ){
+            V_liste_annonce an = liste.get(i);
+            if(an.getIdcaracteristique()!=a && an.getIdfavorie()!=0){
+                // System.out.println("idcaracteristique :"+an.getIdcaracteristique());
+                a=an.getIdcaracteristique();
+                resulta.add(an);
+            }
+            
+        }
+        return resulta;
+    }
+
+    
 
     public java.util.List<V_liste_annonce> findAllListeAnnonce(){
         java.util.List<V_liste_annonce> resulta = new java.util.ArrayList<V_liste_annonce>();

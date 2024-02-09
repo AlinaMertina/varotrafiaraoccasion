@@ -30,4 +30,13 @@ public class ConnecterService {
     public void update(Connecter table){
         connecterRepository.save(table);
     }
+
+    public void update(Long idclient){
+        try {
+            connecterRepository.updateconnecter(idclient);
+        } catch (Exception e) {
+           System.out.println(e);
+        }
+       
+    }
 }

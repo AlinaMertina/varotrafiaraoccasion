@@ -30,7 +30,7 @@ FROM caracteristique    join etat on caracteristique.idfetat=etat.idetat
                         join couleur on caracteristique.coleur=couleur.idcouleur
                         join localisation on caracteristique.idlocalisation=localisation.idlocalisation
                         left join v_liste_equipement_voiture on caracteristique.idcaracteristique=v_liste_equipement_voiture.idfcaracteristique
-                        left join photocaracteristique on caracteristique.idcaracteristique=photocaracteristique.idfcaracteristique order by ;
+                        left join photocaracteristique on caracteristique.idcaracteristique=photocaracteristique.idfcaracteristique order by annemodel ;
 
 
 

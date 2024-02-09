@@ -7,4 +7,7 @@ public interface ConnecterRepository  extends JpaRepository<Connecter,Long>{
     
     @Query(value = "select * from connecter where idconnecter=:idconnecter", nativeQuery = true)
     public java.util.Optional<Connecter> findOne(@Param("idconnecter") Long idconnecter);
+
+    @Query(value = "update connecter set datedeconnexion=now() where idclient=:idclient", nativeQuery = true)
+    public void  updateconnecter(@Param("idclient") Long idconnecter);
 }

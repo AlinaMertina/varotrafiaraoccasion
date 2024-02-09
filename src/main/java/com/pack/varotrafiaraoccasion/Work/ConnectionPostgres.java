@@ -13,9 +13,14 @@ public class ConnectionPostgres{
 
  public Connection getconnexion(){
     try {
-        String url = "jdbc:postgresql://viaduct.proxy.rlwy.net:25707/railway";
-        String username = "postgres";
-        String password = "31516fe344-5d-2b4bAEA-C2--5CG*E*";
+        // String url = "jdbc:postgresql://viaduct.proxy.rlwy.net:25707/railway";
+        // String username = "postgres";
+        // String password = "31516fe344-5d-2b4bAEA-C2--5CG*E*";
+        // Connection connection = DriverManager.getConnection(url, username, password);
+        // return connection;
+        String url = "jdbc:postgresql://localhost:5432/backvarotrafiara";
+        String username = "mertina";
+        String password = "root";
         Connection connection = DriverManager.getConnection(url, username, password);
         return connection;
     } catch (Exception e) {

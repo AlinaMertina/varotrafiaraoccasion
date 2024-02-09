@@ -91,4 +91,19 @@ public class ConnecterController {
         return returntype;
     }
 
+
+    @PostMapping("/varotrafiaraback/deconnecter")
+    public Returntype  deconnection(@RequestBody Long idclient){
+        Returntype returntype = new Returntype();
+        try {
+            connecterService.update(idclient);
+            returntype = new Returntype(null,"insert");
+        } catch (Exception e) {
+            returntype = new Returntype(e.getMessage(),null);
+            return returntype;
+        }
+        return returntype;
+    }
+
+    
 }
