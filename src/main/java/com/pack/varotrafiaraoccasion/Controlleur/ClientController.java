@@ -1,10 +1,12 @@
 package com.pack.varotrafiaraoccasion.Controlleur;
 import com.pack.varotrafiaraoccasion.Entity.Client;
+import com.pack.varotrafiaraoccasion.Entity.Connecter;
 import com.pack.varotrafiaraoccasion.Entity.Clientdateinscription;
 import com.pack.varotrafiaraoccasion.Entity.Utilisateur;
 import com.pack.varotrafiaraoccasion.Security.Config.AuthenticationService;
 import com.pack.varotrafiaraoccasion.Service.ClientService;
 import com.pack.varotrafiaraoccasion.Service.ClientdateinscriptionService;
+import com.pack.varotrafiaraoccasion.Service.ConnecterService;
 import com.pack.varotrafiaraoccasion.Service.V_info_clientService;
 
 import java.text.SimpleDateFormat;
@@ -42,6 +44,7 @@ public class ClientController {
  private final AuthenticationService service;
  private final V_info_clientService info_clientService;
  private final ClientdateinscriptionService clientdateinscriptionService;
+ private final ConnecterService connecterService;
     
     // @Autowired
     // public ClientController(ClientService clientService){
@@ -149,9 +152,12 @@ public class ClientController {
             if(table.getIdclient()==null){
                 Utilisateur utilisateur = new Utilisateur(null, table.getEmail(), table.getMotdepasse(), null);
                 service.register(utilisateur);
+               
             }
             clientService.update(table);
             Clientdateinscription clientdateinscription =   new Clientdateinscription(null, table.getIdclient(), new Date());
+            Connecter connecter  = new Connecter(null,table.getIdclient(),null);
+            connecterService.update(connecter);
             clientdateinscriptionService.update(clientdateinscription);
             returntype = new Returntype(null,"insert");
         } catch (Exception e) {

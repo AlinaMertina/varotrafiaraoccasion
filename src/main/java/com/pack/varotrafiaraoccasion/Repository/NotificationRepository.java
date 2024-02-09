@@ -15,6 +15,4 @@ public interface NotificationRepository  extends JpaRepository<Notification,Long
     public void updatenotif(@Param("idclient") Long idnotification,@Param("nbr") Integer nbr);
 
 
- 
-
 }

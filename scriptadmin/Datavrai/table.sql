@@ -74,3 +74,24 @@ create table clientdateinscription(
 );
 
 select * from clientdateinscription;
+
+--- laste modification base
+create table connecter(
+    idconnecter bigint primary key,
+    idclient bigint references client(idclient),
+    datedeconnexion timestamp
+);
+insert into connecter values (1,1,null);
+insert into connecter values (2,2,null);
+insert into connecter values (3,3,null);
+insert into connecter values (4,5,null);
+insert into connecter values (5,6,null);
+
+
+
+CREATE VIEW v_info_client_chat AS
+SELECT client.idclient,nomclient,prenomclient,datenaissance,email,nomgenre,tel,nomlocalisation,datedeconnexion
+FROM client join localisation on client.idflocalisation=localisation.idlocalisation
+join genre on genre.idgenre=client.idfgenre join connecter on connecter.idclient=client.idclient;
+
+select * from v_info_client_chat;
